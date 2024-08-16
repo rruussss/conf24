@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Startup Conferences Map</title>
+  <style>
+    #map {
+      height: 600px;
+      width: 100%;
+    }
+  </style>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+  <script>
+    function initMap() {
+      var locations = [
+        ['Bits & Pretzels Founders Festival, Munich', 48.1351, 11.5820, 'https://www.bitsandpretzels.com/'],
+        ['TOKEN2049, Singapore', 1.3521, 103.8198, 'https://www.token2049.com/'],
+        ['European Blockchain Convention, Barcelona', 41.3851, 2.1734, 'https://eblockchainconvention.com/'],
+        ['DMEXCO, Cologne', 50.9375, 6.9603, 'https://dmexco.com/'],
+        ['Sifted Summit, London', 51.5074, -0.1278, 'https://www.siftedsummit.com/'],
+        ['Web Summit, Lisbon', 38.7223, -9.1393, 'https://websummit.com/'],
+        ['Valencia Digital Summit, Valencia', 39.4699, -0.3763, 'https://valenciadigitalsummit.com/'],
+        ['GITEX Global, Dubai', 25.276987, 55.296249, 'https://www.gitex.com/'],
+        ['SLUSH, Helsinki', 60.1699, 24.9384, 'https://www.slush.org/'],
+        ['Elevate Festival, Toronto', 43.651070, -79.347015, 'https://elevate.ca/']
+      ];
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 2,
+        center: {lat: 20, lng: 0}
+      });
+
+      for (var i = 0; i < locations.length; i++) {
+        var marker = new google.maps.Marker({
+          position: {lat: locations[i][1], lng: locations[i][2]},
+          map: map,
+          title: locations[i][0],
+          url: locations[i][3]
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          window.location.href = this.url;
+        });
+      }
+    }
+  </script>
+</head>
+<body onload="initMap()">
+  <h3>Top 10 Startup Conferences for Patent Client Opportunities</h3>
+  <div id="map"></div>
+</body>
+</html>
